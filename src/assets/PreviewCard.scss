@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap');
+
+@mixin flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.PreviewCard {
+  @include flex-column;
+  margin: 15vh auto;
+  font-family: 'Lexend Deca', sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  .CarCard{
+    @include flex-column;
+    gap: 25px;
+    width: 90vw;
+    max-width: 300px;
+    padding: 35px 32.5px;
+    color: hsla(0, 0%, 100%, 0.75);
+    div.card-content {
+      @include flex-column;
+      gap: 15px;
+      h2 {
+        font-family: 'Big Shoulders Display', cursive;
+        font-size: 30px;
+        text-transform: uppercase;
+        color: hsl(0, 0%, 95%);
+      }
+      p {
+        font-size: 15px;
+        line-height: 25px;
+      }
+    }
+    button {
+      background-color: hsl(0, 0%, 95%);
+      border: 3px solid hsl(0, 0%, 95%);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-family: 'Lexend Deca', sans-serif;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+$card-color: (
+  1: hsl(31, 77%, 52%),
+  2: hsl(184, 100%, 22%),
+  3: hsl(179, 100%, 13%),
+);
+
+@each $num, $color in $card-color {
+  .PreviewCard > .CarCard:nth-child(#{$num}) {
+    background-color: $color;
+    button {
+      color: $color;
+      &:hover {
+        color: hsl(0, 0%, 95%);
+        background-color: $color;
+      }
+    }
+  }
+}
+
+@media (min-width: 765px) {
+  .PreviewCard {
+    flex-direction: row;
+    margin: 0;
+    .CarCard {
+      gap: 70px;
+      max-width: 275px;
+    }
+  }
+}
